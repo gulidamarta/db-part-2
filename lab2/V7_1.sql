@@ -1,4 +1,5 @@
 USE AdventureWorks2012;
+GO
 
 /*
 Display the last hourly rate change date for each employee.
@@ -8,6 +9,7 @@ SELECT Employee.[BusinessEntityID], Employee.[JobTitle], MAX(EmployeePayHistory.
 	INNER JOIN HumanResources.EmployeePayHistory as EmployeePayHistory 
 		ON EmployeePayHistory.[BusinessEntityID] = Employee.[BusinessEntityID]
 	GROUP BY Employee.[BusinessEntityID], Employee.[JobTitle];
+GO
 
 /*
 Display the number of years that each employee has worked in each department.
@@ -24,6 +26,7 @@ SELECT Employee.[BusinessEntityID],
 		ON Employee.[BusinessEntityID] = EmployeeDepartmentHistory.[BusinessEntityID]
 	INNER JOIN HumanResources.Department AS Department
 		ON Department.[DepartmentID] = EmployeeDepartmentHistory.[DepartmentID];
+GO
 
 /*
 Display information about all employees, indicating the department in which they currently work.
@@ -46,3 +49,4 @@ SELECT Employee.[BusinessEntityID],
 	INNER JOIN HumanResources.Department as Department
 		ON Department.[DepartmentID] = EmployeeDepartmentHistory.[DepartmentID] 
 		AND EmployeeDepartmentHistory.[EndDate] IS NULL;
+GO
