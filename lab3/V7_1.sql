@@ -2,16 +2,16 @@ USE AdventureWorks2012;
 GO
 
 /*
-a) добавьте в таблицу dbo.PersonPhone поле City типа nvarchar(30);
+a) РґРѕР±Р°РІСЊС‚Рµ РІ С‚Р°Р±Р»РёС†Сѓ dbo.PersonPhone РїРѕР»Рµ City С‚РёРїР° nvarchar(30);
 */
 ALTER TABLE dbo.PersonPhone
 	ADD City NVARCHAR(30);
 GO
 
 /*
-b) объявите табличную переменную с такой же структурой как dbo.PersonPhone и заполните ее данными из dbo.PersonPhone. 
-Поле City заполните значениями из таблицы Person.Address поля City, а поле PostalCode 
-значениями из Person.Address поля PostalCode. Если поле PostalCode содержит буквы — заполните поле значением по умолчанию;
+b) РѕР±СЉСЏРІРёС‚Рµ С‚Р°Р±Р»РёС‡РЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ СЃ С‚Р°РєРѕР№ Р¶Рµ СЃС‚СЂСѓРєС‚СѓСЂРѕР№ РєР°Рє dbo.PersonPhone Рё Р·Р°РїРѕР»РЅРёС‚Рµ РµРµ РґР°РЅРЅС‹РјРё РёР· dbo.PersonPhone. 
+РџРѕР»Рµ City Р·Р°РїРѕР»РЅРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏРјРё РёР· С‚Р°Р±Р»РёС†С‹ Person.Address РїРѕР»СЏ City, Р° РїРѕР»Рµ PostalCode 
+Р·РЅР°С‡РµРЅРёСЏРјРё РёР· Person.Address РїРѕР»СЏ PostalCode. Р•СЃР»Рё РїРѕР»Рµ PostalCode СЃРѕРґРµСЂР¶РёС‚ Р±СѓРєРІС‹ вЂ” Р·Р°РїРѕР»РЅРёС‚Рµ РїРѕР»Рµ Р·РЅР°С‡РµРЅРёРµРј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ;
 */
 DECLARE @PersonPhoneTableVar TABLE (
 	BusinessEntityId INT NOT NULL,
@@ -22,7 +22,7 @@ DECLARE @PersonPhoneTableVar TABLE (
 	City NVARCHAR(30)
 );
 
--- Заполнение созданной табличной переменной данными из dbo.PersonPhone
+-- Р—Р°РїРѕР»РЅРµРЅРёРµ СЃРѕР·РґР°РЅРЅРѕР№ С‚Р°Р±Р»РёС‡РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ РґР°РЅРЅС‹РјРё РёР· dbo.PersonPhone
 INSERT INTO @PersonPhoneTableVar(
 	BusinessEntityId,
 	PhoneNumber,
@@ -48,8 +48,8 @@ INNER JOIN Person.Address AS Address
 ON Address.AddressID = Person.BusinessEntityAddress.AddressID;
 
 /*
-c) обновите данные в полях PostalCode и City в dbo.PersonPhone данными из табличной переменной. 
-Также обновите данные в поле PhoneNumber. Добавьте код ‘1 (11)’ для тех телефонов, для которых этот код не указан;
+c) РѕР±РЅРѕРІРёС‚Рµ РґР°РЅРЅС‹Рµ РІ РїРѕР»СЏС… PostalCode Рё City РІ dbo.PersonPhone РґР°РЅРЅС‹РјРё РёР· С‚Р°Р±Р»РёС‡РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№. 
+РўР°РєР¶Рµ РѕР±РЅРѕРІРёС‚Рµ РґР°РЅРЅС‹Рµ РІ РїРѕР»Рµ PhoneNumber. Р”РѕР±Р°РІСЊС‚Рµ РєРѕРґ вЂ1 (11)вЂ™ РґР»СЏ С‚РµС… С‚РµР»РµС„РѕРЅРѕРІ, РґР»СЏ РєРѕС‚РѕСЂС‹С… СЌС‚РѕС‚ РєРѕРґ РЅРµ СѓРєР°Р·Р°РЅ;
 */
 UPDATE dbo.PersonPhone
 	SET 
@@ -70,7 +70,7 @@ GO
 SELECT * FROM dbo.PersonPhone;
 
 /*
-d) удалите данные из dbo.PersonPhone для сотрудников компании, то есть где PersonType в Person.Person равен ‘EM’;
+d) СѓРґР°Р»РёС‚Рµ РґР°РЅРЅС‹Рµ РёР· dbo.PersonPhone РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РєРѕРјРїР°РЅРёРё, С‚Рѕ РµСЃС‚СЊ РіРґРµ PersonType РІ Person.Person СЂР°РІРµРЅ вЂEMвЂ™;
 */
 SELECT * from Person.Person;
 SELECT * from dbo.PersonPhone;
@@ -88,19 +88,19 @@ SELECT * FROM dbo.PersonPhone;
 GO
 
 /*
-e) удалите полe City из таблицы, удалите все созданные ограничения и значения по умолчанию.
+e) СѓРґР°Р»РёС‚Рµ РїРѕР»e City РёР· С‚Р°Р±Р»РёС†С‹, СѓРґР°Р»РёС‚Рµ РІСЃРµ СЃРѕР·РґР°РЅРЅС‹Рµ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ Рё Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 */
 ALTER TABLE dbo.PersonPhone
 DROP COLUMN City;
 GO
 
--- Поиск имён ограничений в метаданных.
+-- РџРѕРёСЃРє РёРјС‘РЅ РѕРіСЂР°РЅРёС‡РµРЅРёР№ РІ РјРµС‚Р°РґР°РЅРЅС‹С….
 SELECT *
 FROM AdventureWorks2012.INFORMATION_SCHEMA.CONSTRAINT_TABLE_USAGE
 WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PersonPhone';
 GO
 
--- Поиск значений по умолчанию в метаданных.
+-- РџРѕРёСЃРє Р·РЅР°С‡РµРЅРёР№ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІ РјРµС‚Р°РґР°РЅРЅС‹С….
 SELECT *
 FROM AdventureWorks2012.INFORMATION_SCHEMA.CHECK_CONSTRAINTS;
 GO
@@ -114,7 +114,7 @@ DROP CONSTRAINT DF_PersonPhone_PostalCode;
 GO
 
 /*
-f) удалите таблицу dbo.PersonPhone.
+f) СѓРґР°Р»РёС‚Рµ С‚Р°Р±Р»РёС†Сѓ dbo.PersonPhone.
 */
 DROP TABLE dbo.PersonPhone;
 GO
