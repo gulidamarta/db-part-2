@@ -16,9 +16,6 @@ ALTER TABLE dbo.PersonPhone
 		END;
 GO
 
-SELECT * FROM dbo.PersonPhone;
-GO
-
 /*
 b) создайте временную таблицу #PersonPhone, с первичным ключом по полю BusinessEntityID. 
 Временная таблица должна включать все поля таблицы dbo.PersonPhone за исключением поля IsSuperior.
@@ -37,9 +34,6 @@ GO
 ALTER TABLE #PersonPhone
 	ADD CONSTRAINT PK_PersonPhones_BusinessEntityID 
 	PRIMARY KEY ([BusinessEntityID]);
-GO
-
-SELECT * FROM #PersonPhone;
 GO
 
 /*
@@ -109,15 +103,8 @@ GO
 /*
 d) удалите из таблицы dbo.PersonPhone одну строку (где BusinessEntityID = 297)
 */
-SELECT * FROM dbo.PersonPhone
-	WHERE [BusinessEntityID] = 297;
-GO
-
 DELETE FROM dbo.PersonPhone
 	WHERE [BusinessEntityID] = 297;
-GO
-
-SELECT * FROM #PersonPhone;
 GO
 
 /*
@@ -140,11 +127,13 @@ VALUES (
 );
 GO
 
+-- Проверка вставки
 SELECT * FROM dbo.PersonPhone
 	WHERE [BusinessEntityID] = 99999999;
 GO
 
 
+-- Merge выражение
 MERGE INTO dbo.PersonPhone AS [target]
 USING #PersonPhone AS [source]
 ON [target].[BusinessEntityID] = [source].[BusinessEntityID]
