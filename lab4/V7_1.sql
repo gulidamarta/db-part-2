@@ -27,7 +27,7 @@ GO
 b) Создайте три AFTER триггера для трех операций INSERT, UPDATE, DELETE для таблицы Sales.Currency. 
 Каждый триггер должен заполнять таблицу Sales.CurrencyHst с указанием типа операции в поле Action.
 */
--- Триггер для операции INSERT
+-- INSERT
 CREATE TRIGGER TR_SalesCurrency_AfterInsert
 	ON Sales.Currency
 AFTER INSERT AS 
@@ -47,7 +47,8 @@ BEGIN
 END
 GO
 
--- Триггер для операции DELETE
+
+-- DELETE
 CREATE TRIGGER TR_SalesCurrency_AfterDelete
 	ON Sales.Currency
 AFTER DELETE AS 
@@ -67,7 +68,8 @@ BEGIN
 END
 GO
 
--- Триггер для операции UPDATE
+
+-- UPDATE
 CREATE TRIGGER TR_SalesCurrency_AfterUpdate
 	ON Sales.Currency
 AFTER UPDATE AS 
@@ -101,7 +103,7 @@ SELECT
 	definition    
 FROM sys.sql_modules 
 WHERE 
-	object_id = object_id('Sales.vCurrency');
+	OBJECT_ID = OBJECT_ID('Sales.vCurrency');
 GO
 
 /*
