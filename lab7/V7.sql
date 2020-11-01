@@ -13,7 +13,7 @@ DECLARE @XmlContent XML;
 SET @XmlContent = (
 	SELECT 
 		Product.ProductID AS [@ID],
-		Product.Name AS "Name",
+		Product.Name AS [Name],
 		ProductModel.ProductModelID AS [Model/@ID],
 		ProductModel.Name AS [Model/Name]
 	FROM Production.Product AS Product
